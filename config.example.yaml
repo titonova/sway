@@ -1,0 +1,45 @@
+# Sway configuration example — copy to config.yaml and edit for your organization.
+# Never put credentials in this file; they come from environment variables.
+# Relative paths resolve from the directory containing config.yaml.
+version: 1
+settings:
+  # Posts default to ~/.sway/posts/{organization} when posts_path is omitted.
+  default_posts_path: ~/.sway/posts/{organization}
+  max_autonomous_revisions: 3
+organizations:
+  # Replace 'myorg' with your organization slug. Multiple brands can share
+  # organization knowledge while following separate brand guidelines.
+  myorg:
+    display_name: My Organization (demo)
+    # External roots that live OUTSIDE this repo — never commit org documents.
+    documents_path: ~/Documents/myorg/docs
+    assets_path: ~/Documents/myorg/assets
+    posts_path: ~/Documents/myorg/posts
+    # Optional document access policy (exact paths and globs with *, ?, **).
+    # This is a document-tool access policy, not full filesystem sandboxing.
+    document_access:
+      allow:
+        - "*.md"
+        - "strategy/**"
+      deny:
+        - "internal/*"
+        - "private.md"
+    brands:
+      main:
+        display_name: My Brand
+    # Optional deterministic next-post recommendation engine. Leave disabled
+    # unless you operate a compatible endpoint; Sway never invents responses.
+    recommendation_engine:
+      enabled: false
+      # next_post_url: https://example.org/api/social-content-engine/next-post
+      # log_post_url: https://example.org/api/social-content-engine/log-post
+      # token_env: MY_ENGINE_TOKEN
+    # Optional publishing through Buffer. Channel IDs come from your Buffer
+    # account; the API key is read from the named environment variable.
+    publishing:
+      enabled: false
+      provider: buffer
+      # token_env: BUFFER_API_KEY
+      # accounts:
+      #   instagram:
+      #     provider_channel_id: your-buffer-channel-id
